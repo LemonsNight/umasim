@@ -212,6 +212,9 @@ private fun UniqueSkillSetting(
                 onSelect = { dispatch(setCharaName(virtual, it)) },
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text("角色") },
+                // 僅改變下拉選項的顯示文字；charaName / holder 內部值保持原始日文，
+                // charaToUniqueSkill / charaToEvoSkills 的查表邏輯不受影響。
+                itemToString = { displayCharaNameZhTw(it) },
             )
             if (charaName != NOT_SELECTED) {
                 val uniqueSkill = charaToUniqueSkill[charaName]

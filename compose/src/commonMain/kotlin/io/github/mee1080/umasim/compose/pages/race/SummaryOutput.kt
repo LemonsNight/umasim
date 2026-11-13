@@ -38,7 +38,7 @@ fun SummaryOutput(state: AppState, dispatch: OperationDispatcher<AppState>) {
             SummaryTable(state, dispatch)
         }
         if (summary.setting.trackDetail.runUp > 0) {
-            Text("※各タイムは助走区間分を含む")
+            Text("※各項時間包含起跑助走區間")
         }
         SelectionContainer {
             SkillTable(summary)
@@ -47,22 +47,22 @@ fun SummaryOutput(state: AppState, dispatch: OperationDispatcher<AppState>) {
 }
 
 private val rowLabels = listOf(
-    "最大スパート率",
-    "完走率",
-    "平均タイム",
-    "最速タイム",
-    "最遅タイム",
-    "スパート平均余剰",
-    "スパート最大余剰",
-    "スパート最小余剰",
-    "平均残り体力",
-    "最大残り体力",
-    "最小残り体力",
-    "位置取り調整回数",
-    "持久力温存発生率",
-    "持久力温存平均距離",
-    "追い比べ完走率",
-    "追い比べ平均時間",
+    "最大衝刺率",
+    "完賽率",
+    "平均時間",
+    "最快時間",
+    "最慢時間",
+    "衝刺平均剩餘耐力",
+    "衝刺最大剩餘耐力",
+    "衝刺最小剩餘耐力",
+    "平均剩餘體力",
+    "最大剩餘體力",
+    "最小剩餘體力",
+    "位置調整次數",
+    "耐力保留發生率",
+    "耐力保留平均距離",
+    "競り追完賽率",
+    "競り追平均時間",
 )
 
 @Composable
@@ -177,20 +177,20 @@ private fun SkillTable(summary: SimulationSummary) {
         val tableData = buildList {
             add(
                 listOf(
-                    "発動数",
-                    "発動率",
-                    "平均発動位置1",
-                    "2回発動率",
-                    "平均発動位置2",
-                    "序盤発動率",
-                    "中盤接続率",
-                    "平均中盤接続時間",
-                    "中盤発動率",
-                    "終盤接続率",
-                    "平均終盤接続時間",
-                    "終盤発動率",
-                    "平均終盤遅延",
-                    "速度上昇無効割合",
+                    "發動次數",
+                    "發動率",
+                    "平均發動位置 1",
+                    "二次發動率",
+                    "平均發動位置 2",
+                    "序盤發動率",
+                    "中盤銜接率",
+                    "平均中盤銜接時間",
+                    "中盤發動率",
+                    "終盤銜接率",
+                    "平均終盤銜接時間",
+                    "終盤發動率",
+                    "平均終盤延遲",
+                    "速度提升無效比例",
                 )
             )
             summaries.forEach { add(toTableData(summary.setting, it.second)) }
@@ -214,7 +214,7 @@ private fun SkillTable(summary: SimulationSummary) {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.Bottom,
         ) {
-            Text("スキル情報")
+            Text("技能情報")
             LabeledCheckbox(calcSp, { calcSp = it }) {
                 Text("SP計算")
             }
@@ -278,7 +278,7 @@ private fun SkillTable(summary: SimulationSummary) {
                 horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.End),
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                Text("合計SP: ${skillPtList.sum()}")
+                Text("技能點數合計： ${skillPtList.sum()}")
                 LabeledCheckbox(kire, { kire = it }) { Text("切れ者") }
             }
         }

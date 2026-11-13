@@ -30,7 +30,7 @@ fun ActionInput(state: AppState, dispatch: OperationDispatcher<AppState>) {
                 IntTextField(
                     value = state.threadCount,
                     modifier = Modifier.width(128.dp),
-                    label = { Text("スレッド数") },
+                    label = { Text("執行緒數") },
                     onValueChange = { dispatch(setThreadCount(it)) }
                 )
             }
@@ -43,7 +43,7 @@ fun ActionInput(state: AppState, dispatch: OperationDispatcher<AppState>) {
                 onClick = { dispatch(runSimulation()) },
                 enabled = state.simulationCount > 0 && state.simulationProgress == 0,
             ) {
-                Text("エミュレート開始")
+                Text("開始模擬")
             }
             MaterialTheme.colorScheme.error
             MyButton(
@@ -51,14 +51,14 @@ fun ActionInput(state: AppState, dispatch: OperationDispatcher<AppState>) {
                 enabled = state.simulationProgress > 0,
                 colors = errorButtonColors(),
             ) {
-                Text("中止")
+                Text("停止")
             }
             if (state.simulationMode == SimulationMode.NORMAL) {
                 MyButton(
                     onClick = { dispatch(runSimulation(1)) },
                     enabled = state.simulationProgress == 0,
                 ) {
-                    Text("1回のみ")
+                    Text("僅模擬一次")
                 }
             }
         }

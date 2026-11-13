@@ -55,7 +55,7 @@ fun ContributionOutput(state: AppState) {
                 } else {
                     entry.efficiency[0].roundToString(4)
                 },
-                skill?.notice?.joinToString(", ") ?: "",
+                skill?.notice?.joinToString(", ") { displayNoticeZhTw(it) } ?: "",
             )
         }
     }
@@ -66,12 +66,12 @@ fun ContributionOutput(state: AppState) {
                 Text("", Modifier.padding(4.dp))
                 results.forEach {
                     if (it.compareName == null) {
-                        Text(it.name, Modifier.padding(4.dp))
+                        Text(displaySkillNameZhTw(it.name), Modifier.padding(4.dp))
                     } else {
                         Column(Modifier.padding(horizontal = 4.dp)) {
                             Text(it.compareName + " ->", style = MaterialTheme.typography.labelSmall)
                             Text(
-                                it.name,
+                                displaySkillNameZhTw(it.name),
                                 style = MaterialTheme.typography.labelMedium,
                                 modifier = Modifier.align(Alignment.End),
                             )
@@ -109,6 +109,6 @@ fun ContributionOutput(state: AppState) {
                 }
             }
         }
-        Text("※信頼できるデータ出すにはシミュレーション回数10000回ぐらいは必要です。特に斜行セットとか。")
+        Text("※若要取得可信的統計資料，建議模擬約 10,000 次，尤其是斜行組合等情況。")
     }
 }

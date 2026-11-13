@@ -29,7 +29,7 @@ fun ImportExport(virtual: Boolean, state: AppState, dispatch: OperationDispatche
 private fun ImportDialog(virtual: Boolean, dispatch: OperationDispatcher<AppState>) {
     var open by remember { mutableStateOf(false) }
     MyButton({ open = true }) {
-        Text("インポート")
+        Text("匯入")
     }
     if (open) {
         var input by remember { mutableStateOf("") }
@@ -38,8 +38,8 @@ private fun ImportDialog(virtual: Boolean, dispatch: OperationDispatcher<AppStat
             onDismissRequest = { open = false },
             text = {
                 Column {
-                    Text("※枠内にCtrl+Vなどでペーストし、インポートを押してください(Androidたぶん非対応)")
-                    Text("※フォーマットは適当なので、ChatGPT等にOCRさせて読み込むのも可能")
+                    Text("※請在欄位中使用 Ctrl+V 貼上，再按「匯入」（Android 可能不支援）")
+                    Text("※格式較為寬鬆，也可以使用 ChatGPT 等工具進行 OCR 後匯入")
                     TextWithLink("　例： https://x.com/mee10801/status/1796811671304028542")
                     OutlinedTextField(
                         value = input,
@@ -50,21 +50,21 @@ private fun ImportDialog(virtual: Boolean, dispatch: OperationDispatcher<AppStat
                         onClick = { result = ImportExportConverter.importChara(input) },
                         modifier = Modifier.padding(vertical = 8.dp),
                     ) {
-                        Text("インポート")
+                        Text("匯入")
                     }
                     result?.let {
-                        Text("キャラ：${it.charaName}")
-                        Text("ステータス：${it.speed}/${it.stamina}/${it.power}/${it.guts}/${it.wisdom}")
+                        Text("角色：${it.charaName}")
+                        Text("能力值：${it.speed}/${it.stamina}/${it.power}/${it.guts}/${it.wisdom}")
                         Text("適性：バ場${it.surfaceFit}/距離${it.distanceFit}/脚質${it.styleFit}")
                         if (it.hasSkills.isNotEmpty()) {
-                            Text("スキル：")
+                            Text("技能：")
                             FlowRow(Modifier.padding(start = 16.dp)) {
                                 it.hasSkills.forEach { skill ->
-                                    Text("${skill.name}, ")
+                                    Text("${skill.displayNameZhTw()}, ")
                                 }
                             }
                         }
-                        Text("※インポートされるのは、ステータス、適性、スキルのみです")
+                        Text("※僅會匯入能力值、適性與技能")
                     }
                 }
             },
@@ -78,12 +78,12 @@ private fun ImportDialog(virtual: Boolean, dispatch: OperationDispatcher<AppStat
                     },
                     enabled = result != null,
                 ) {
-                    Text("反映")
+                    Text("套用")
                 }
             },
             dismissButton = {
                 MyButton({ open = false }) {
-                    Text("キャンセル")
+                    Text("取消")
                 }
             }
         )
@@ -94,7 +94,7 @@ private fun ImportDialog(virtual: Boolean, dispatch: OperationDispatcher<AppStat
 private fun ExportDialog(chara: UmaStatus) {
     var open by remember { mutableStateOf(false) }
     MyButton({ open = true }) {
-        Text("エクスポート")
+        Text("匯出")
     }
     if (open) {
         var value by remember { mutableStateOf("") }
@@ -110,13 +110,13 @@ private fun ExportDialog(chara: UmaStatus) {
                         onValueChange = {},
                         readOnly = true,
                     )
-                    Text("※枠内をCtrl+Cなどでコピーしてください(Android非対応)")
-                    Text("※エクスポートされるのは、ステータス、適性、スキルのみです")
+                    Text("※請在欄位中使用 Ctrl+C 複製（Android 不支援）")
+                    Text("※僅會匯出能力值、適性與技能")
                 }
             },
             confirmButton = {
                 MyButton({ open = false }) {
-                    Text("閉じる")
+                    Text("關閉")
                 }
             },
         )

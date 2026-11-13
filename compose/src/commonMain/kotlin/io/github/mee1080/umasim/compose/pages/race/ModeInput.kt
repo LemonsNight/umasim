@@ -21,7 +21,7 @@ fun ModeInput(state: AppState, dispatch: OperationDispatcher<AppState>) {
         SelectBox(
             SimulationMode.entries, state.simulationMode,
             onSelect = { dispatch(setSimulationMode(it)) },
-            label = { Text("モード") },
+            label = { Text("模式") },
             itemToString = { it.label },
         )
         if (state.simulationMode == SimulationMode.CONTRIBUTION || state.simulationMode == SimulationMode.CONTRIBUTION2) {
@@ -34,7 +34,7 @@ fun ModeInput(state: AppState, dispatch: OperationDispatcher<AppState>) {
 private fun ContributionSetting(state: AppState, dispatch: OperationDispatcher<AppState>) {
     Column {
         val statusValue = if (state.simulationMode == SimulationMode.CONTRIBUTION) -100 else 100
-        listOf("スピード", "スタミナ", "パワー", "根性", "賢さ").forEach { target ->
+        listOf("速度", "耐力", "力量", "毅力", "智力").forEach { target ->
             val id = "/status_${target}_$statusValue"
             val text = if (statusValue >= 0) "$target+$statusValue" else "$target$statusValue"
             ContributionSettingEntry(state.contributionTargets, dispatch, id, text)
@@ -79,7 +79,7 @@ private fun ContributionSetting(state: AppState, dispatch: OperationDispatcher<A
             }
         }
         state.hasSkills(false).forEach { skill ->
-            ContributionSettingEntry(state.contributionTargets, dispatch, skill.id, skill.name)
+            ContributionSettingEntry(state.contributionTargets, dispatch, skill.id, skill.displayNameZhTw())
         }
     }
 }

@@ -2,6 +2,8 @@
 
 > **本仓库是 [mee1080/umasim](https://github.com/mee1080/umasim) 的非官方繁体中文（zh-Hant）汉化分支，由社区维护，并非原作者官方仓库。**
 
+**在线预览（繁体中文界面）**：<https://lemonsnight.github.io/umasim/race/>
+
 原名：ウマ娘育成シミュレータ (umasim)（赛马娘养育模拟器）
 
 > 说明：本文件使用简体中文书写，但项目内的游戏内容已汉化为繁体中文。
